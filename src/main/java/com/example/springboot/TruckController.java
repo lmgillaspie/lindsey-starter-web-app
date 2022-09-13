@@ -38,7 +38,7 @@ public class TruckController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Truck> read(@PathVariable Long id) {
+    public ResponseEntity<Truck> read(@PathVariable Integer id) {
         Optional<Truck> optionalTruck = repository.findById(id);
 
         if (optionalTruck.isEmpty()) {

@@ -1,14 +1,15 @@
 package com.example.springboot;
 
-import lombok.Builder;
-import lombok.Getter;
+import lombok.*;
 
 import javax.persistence.*;
 
 import org.springframework.data.domain.AbstractAggregateRoot;
 
-@Getter
 @Builder
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
 public class Truck extends AbstractAggregateRoot<Truck> {
 
