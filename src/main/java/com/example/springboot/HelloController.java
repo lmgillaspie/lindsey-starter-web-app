@@ -1,6 +1,7 @@
 package com.example.springboot;
 
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @RestController
@@ -10,5 +11,4 @@ public class HelloController {
 	public String index() {
 		return "Greetings Hackathon!";
 	}
-
 }

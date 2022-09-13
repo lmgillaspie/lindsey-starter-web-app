@@ -1,6 +1,13 @@
 spring:
   application:
     name: tanzu-java-web-app
+  datasource:
+    url: jdbc:h2:mem:mydb
+  jpa:
+    show-sql: true
+  h2:
+    console:
+      enabled: true
 management:
   endpoints:
     web:
@@ -9,3 +16,4 @@ management:
   endpoint:
     health:
       show-details: always
+    
