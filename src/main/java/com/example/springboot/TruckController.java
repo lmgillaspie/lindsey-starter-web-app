@@ -2,27 +2,26 @@ package com.example.springboot;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.springboot.Repositories.TruckRepository;
 import com.example.springboot.Truck.TruckBuilder;
 
 @RestController
+@RequestMapping("/trucks")
 public class TruckController {
 
     @Autowired
     private TruckRepository repository;
 
     @PostMapping("/")
-    public int create() {
+    public Truck create() {
 
-        TruckBuilder builder = new TruckBuilder();
+        Truck newTruck = Truck.builder()
+                .status(TruckStatus.ELIGIBLE_FOR_INSPECTION)
+                .build();
 
-        Truck newTruck = builder.build();
-
-        newTruck = repository.save(newTruck);
-
-        return newTruck.getId();
+        return repository.save(newTruck);
     }
-
 }
