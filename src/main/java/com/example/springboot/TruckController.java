@@ -3,7 +3,8 @@ package com.example.springboot;
 import java.net.URI;
 import java.util.Optional;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import com.example.springboot.events.TruckEventService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -13,15 +14,14 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.example.springboot.Repositories.TruckRepository;
-import com.example.springboot.Truck.TruckBuilder;
-import com.rabbitmq.client.RpcClient.Response;
 
 @RestController
 @RequestMapping("/trucks")
+@RequiredArgsConstructor
 public class TruckController {
 
-    @Autowired
-    private TruckRepository repository;
+    private final TruckRepository repository;
+    private final TruckEventService truckEventService;
 
     @PostMapping("/")
     public ResponseEntity<Truck> create() {
@@ -31,6 +31,8 @@ public class TruckController {
                 .build();
 
         newTruck = repository.save(newTruck);
+        truckEventService.notifyTruckAdded(newTruck.getId());
+
         URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(newTruck.getId())
                 .toUri();
 
