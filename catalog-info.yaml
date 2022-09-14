@@ -1,8 +1,8 @@
 apiVersion: backstage.io/v1alpha1
 kind: Component
 metadata:
-  name: lindsey-starter-web-app
-  description: Tanzu Java Web App
+  name: wehaul-fleet
+  description: Wehaul fleet management
   tags:
     - app-accelerator
     - java
@@ -10,7 +10,7 @@ metadata:
     - web
     - tanzu
   annotations:
-    'backstage.io/kubernetes-label-selector': 'app.kubernetes.io/part-of=lindsey-starter-web-app'
+    'backstage.io/kubernetes-label-selector': 'app.kubernetes.io/part-of=wehaul-fleet'
 spec:
   type: service
   lifecycle: experimental
