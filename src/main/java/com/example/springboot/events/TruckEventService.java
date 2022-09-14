@@ -13,7 +13,19 @@ public class TruckEventService {
     private final StreamBridge streamBridge;
 
     public void notifyTruckAdded(int truckId) {
-        streamBridge.send("truck-added", TruckEvent.builder()
+        createTruckEvent(truckId, "truck-added");
+    }
+
+    public void notifyTruckInspectionStarted(Integer truckId) {
+        createTruckEvent(truckId, "truck-inspection-started");
+    }
+
+    public void notifyTruckInspectionCompleted(Integer truckId) {
+        createTruckEvent(truckId, "truck-inspection-completed");
+    }
+
+    private void createTruckEvent(Integer truckId, String s) {
+        streamBridge.send(s, TruckEvent.builder()
                 .truckId(truckId)
                 .created(Instant.now())
                 .build());

@@ -13,6 +13,10 @@ spring:
       bindings:
         truck-added:
           destination: truck-added
+        truck-inspection-started:
+          destination: truck-inspection-started
+        truck-inspection-completed:
+          destination: truck-inspection-completed
 
 management:
   endpoints:

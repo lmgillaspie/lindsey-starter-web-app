@@ -1,7 +1,6 @@
 package com.example.springboot;
 
 import java.net.URI;
-import java.util.Optional;
 
 import com.example.springboot.events.TruckEventService;
 import lombok.RequiredArgsConstructor;
@@ -10,25 +9,20 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import com.example.springboot.Repositories.TruckRepository;
+import com.example.springboot.services.TruckService;
 
 @RestController
 @RequestMapping("/trucks")
 @RequiredArgsConstructor
 public class TruckController {
 
-    private final TruckRepository repository;
     private final TruckEventService truckEventService;
+    private final TruckService truckService;
 
     @PostMapping("/")
     public ResponseEntity<Truck> create() {
 
-        Truck newTruck = Truck.builder()
-                .status(TruckStatus.ELIGIBLE_FOR_INSPECTION)
-                .build();
-
-        newTruck = repository.save(newTruck);
-        truckEventService.notifyTruckAdded(newTruck.getId());
+        var newTruck = truckService.createTruck();
 
         URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(newTruck.getId())
                 .toUri();
@@ -36,25 +30,21 @@ public class TruckController {
         return ResponseEntity.created(location).build();
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<Truck> read(@PathVariable Integer id) {
-        Optional<Truck> optionalTruck = repository.findById(id);
+    @GetMapping("/{truckId}")
+    public ResponseEntity<Truck> read(@PathVariable Integer truckId) {
+        Truck truck = truckService.findTruck(truckId);
 
-        if (optionalTruck.isEmpty()) {
-            return ResponseEntity.notFound().build();
-        }
-
-        return ResponseEntity.ok(optionalTruck.get());
+        return ResponseEntity.ok(truck);
     }
 
-    @PutMapping("/{id}/inspect")
-    public ResponseEntity<Truck> inspect(@PathVariable Integer truckId) {
-        throw new NotImplementedException();
+    @PutMapping("/{truckId}/inspect")
+    public Truck inspect(@PathVariable Integer truckId) {
+        return truckService.startInspection(truckId);
     }
 
-    @PutMapping("/{id}/completeinspection")
-    public ResponseEntity<Truck> completeInspection(@PathVariable Integer truckId) {
-        throw new NotImplementedException();
+    @PutMapping("/{truckId}/completeinspection")
+    public Truck completeInspection(@PathVariable Integer truckId) {
+        return truckService.completeInspection(truckId);
     }
 
 }
