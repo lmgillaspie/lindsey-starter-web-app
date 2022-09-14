@@ -19,3 +19,14 @@ spec:
       url: https://github.com/sample-accelerators/lindsey-starter-web-app
       ref:
         branch: main
+  serviceClaims:
+  - name: db
+    ref:
+      apiVersion: services.apps.tanzu.vmware.com/v1alpha1
+      kind: ResourceClaim
+      name: postgres-2
+  - name: rabbitmq
+    ref:
+      apiVersion: services.apps.tanzu.vmware.com/v1alpha1
+      kind: ResourceClaim
+      name: rmq-1
