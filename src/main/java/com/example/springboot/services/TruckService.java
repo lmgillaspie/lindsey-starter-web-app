@@ -6,10 +6,12 @@ import com.example.springboot.events.TruckEventService;
 import com.example.springboot.repositories.TruckRepository;
 import com.example.springboot.exceptions.IllegalTruckStateException;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
+@Slf4j
 public class TruckService {
 
     private final TruckRepository truckRepository;

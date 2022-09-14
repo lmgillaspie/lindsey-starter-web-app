@@ -9,7 +9,11 @@ spring:
     console:
       enabled: true
   cloud:
+    function:
+      definition: reservationCreatedReceived;reservationStartedReceived;reservationEndedReceived
     stream:
+      default:
+        group: fleet
       bindings:
         truck-added:
           destination: truck-added
@@ -17,6 +21,12 @@ spring:
           destination: truck-inspection-started
         truck-inspection-completed:
           destination: truck-inspection-completed
+        reservationCreatedReceived-in-0:
+          destination: reservation-created
+        reservationStartedReceived-in-0:
+          destination: reservation-started
+        reservationEndedReceived-in-0:
+          destination: reservation-ended
 
 management:
   endpoints:
