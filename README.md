@@ -25,3 +25,26 @@ You can hit the spacebar to open the UI in a browser.
         allow_k8s_contexts('tap-beta2')
     to your Tiltfile. Otherwise, switch k8s contexts and restart Tilt.
     ```
+## Dependencies for Local Development
+
+In order to run locally, use the CLOUD spring profile and spin up two dependant services.
+
+Postgres (for persistant storage)
+Username: postgres
+password: mysecretpassword
+database: postgres (default)
+```
+docker run --name some-postgres -e POSTGRES_PASSWORD=mysecretpassword -p 5432:5432 -d postgres
+```
+
+Rabbitmq (for messaging)
+(username and password are guest/guest)
+
+```
+docker run --rm -d -p 5672:5672 -p 15672:15672 rabbitmq:3-management
+```
+
+## Spring Profiles
+```
+SPRING_PROFILES_ACTIVE=cloud java -jar target/demo-0.0.1-SNAPSHOT.jar
+```
