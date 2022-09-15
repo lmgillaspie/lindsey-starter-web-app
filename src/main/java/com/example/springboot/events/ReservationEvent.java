@@ -11,6 +11,7 @@ import java.time.Instant;
 @NoArgsConstructor
 @AllArgsConstructor
 public class ReservationEvent {
+
     public int truckId;
     private Instant created;
 }

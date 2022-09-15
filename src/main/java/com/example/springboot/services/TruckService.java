@@ -47,7 +47,7 @@ public class TruckService {
             return truck;
         }
 
-        throw new IllegalTruckStateException();
+        throw new IllegalTruckStateException(truckId, "Truck can't be inspected because its not eligible");
     }
 
     public Truck completeInspection(Integer truckId) {
@@ -62,7 +62,7 @@ public class TruckService {
             return truck;
         }
 
-        throw new IllegalTruckStateException();
+        throw new IllegalTruckStateException(truckId, "Truck can't complete inspection because its not being inspected");
     }
 
     public void deleteAll() {
