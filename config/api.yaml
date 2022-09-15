@@ -9,4 +9,4 @@ spec:
   owner: wehaul-fleet
   system: wehaul-fleet
   definition:
-    $text: http://wehaul-fleet.wehaul.tap.h2o-2-1249.h2o.vmware.com/v3/api-docs
+    $json: http://wehaul-fleet.wehaul.tap.h2o-2-1249.h2o.vmware.com/v3/api-docs
