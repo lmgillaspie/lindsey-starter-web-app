@@ -1,15 +1,13 @@
 package com.example.springboot;
 
-import java.net.URI;
-
 import com.example.springboot.events.TruckEventService;
+import com.example.springboot.services.TruckService;
 import lombok.RequiredArgsConstructor;
-import org.apache.commons.lang3.NotImplementedException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import com.example.springboot.services.TruckService;
+import java.net.URI;
 
 @RestController
 @RequestMapping("/trucks")
@@ -30,12 +28,10 @@ public class TruckController {
         return ResponseEntity.created(location).build();
     }
 
-//    @GetMapping("/")
-//    public ArrayList<Truck> getTrucks() {
-//        var trucks = truckService.findAllTrucks();
-//
-//        return trucks;
-//    }
+    @GetMapping("/")
+    public Iterable<Truck> getTrucks() {
+        return truckService.findAllTrucks();
+    }
 
     @GetMapping("/{truckId}")
     public ResponseEntity<Truck> read(@PathVariable Integer truckId) {

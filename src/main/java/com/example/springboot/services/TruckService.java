@@ -3,8 +3,8 @@ package com.example.springboot.services;
 import com.example.springboot.Truck;
 import com.example.springboot.TruckStatus;
 import com.example.springboot.events.TruckEventService;
-import com.example.springboot.repositories.TruckRepository;
 import com.example.springboot.exceptions.IllegalTruckStateException;
+import com.example.springboot.repositories.TruckRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -20,6 +20,8 @@ public class TruckService {
     public Truck findTruck(Integer truckId) {
         return truckRepository.findById(truckId).orElseThrow();
     }
+
+    public Iterable<Truck> findAllTrucks() { return truckRepository.findAll(); }
 
     public Truck createTruck() {
 
