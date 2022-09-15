@@ -50,4 +50,8 @@ public class TruckController {
         return truckService.completeInspection(truckId);
     }
 
+    @DeleteMapping("/")
+    public void deleteAllTrucks() {
+        truckService.deleteAll();
+    }
 }

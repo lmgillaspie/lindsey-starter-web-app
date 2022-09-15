@@ -64,4 +64,8 @@ public class TruckService {
 
         throw new IllegalTruckStateException();
     }
+
+    public void deleteAll() {
+        truckRepository.deleteAll();
+    }
 }
