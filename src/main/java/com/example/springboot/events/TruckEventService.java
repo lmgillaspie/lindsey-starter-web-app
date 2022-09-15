@@ -17,11 +17,13 @@ public class TruckEventService {
     }
 
     public void notifyTruckInspectionStarted(Integer truckId) {
+
         createTruckEvent(truckId, "truck-inspection-started");
     }
 
     public void notifyTruckInspectionCompleted(Integer truckId) {
         createTruckEvent(truckId, "truck-inspection-completed");
+
     }
 
     private void createTruckEvent(Integer truckId, String s) {

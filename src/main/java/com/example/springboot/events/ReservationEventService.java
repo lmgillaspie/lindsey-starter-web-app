@@ -23,11 +23,17 @@ public class ReservationEventService {
 
     @Bean
     public Consumer<ReservationEvent> reservationStartedReceived() {
-        return reservationEvent -> eventHandlerService.handleReservationStarted(reservationEvent.getTruckId());
+        return reservationEvent -> {
+            log.info("Reservation Started for truck {}", reservationEvent.getTruckId());
+            eventHandlerService.handleReservationStarted(reservationEvent.getTruckId());
+        };
     }
 
     @Bean
     public Consumer<ReservationEvent> reservationEndedReceived() {
-        return reservationEvent -> eventHandlerService.handleReservationEnded(reservationEvent.getTruckId());
+        return reservationEvent -> {
+            log.info("Truck {} returned", reservationEvent.getTruckId());
+            eventHandlerService.handleReservationEnded(reservationEvent.getTruckId());
+        };
     }
 }
