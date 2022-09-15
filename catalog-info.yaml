@@ -10,7 +10,7 @@ metadata:
     - web
     - tanzu
   annotations:
-    'backstage.io/kubernetes-label-selector': 'app.kubernetes.io/part-of=lindsey-starter-web-app'
+    'backstage.io/kubernetes-label-selector': 'app.kubernetes.io/part-of=wehaul-fleet'
 spec:
   type: service
   lifecycle: experimental
