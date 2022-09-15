@@ -10,6 +10,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import java.net.URI;
 
 @RestController
+@CrossOrigin
 @RequestMapping("/trucks")
 @RequiredArgsConstructor
 public class TruckController {
