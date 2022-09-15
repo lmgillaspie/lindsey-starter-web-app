@@ -8,6 +8,8 @@ spring:
   h2:
     console:
       enabled: true
+  hibernate:
+    ddl-auto: none
   cloud:
     function:
       definition: reservationCreatedReceived;reservationStartedReceived;reservationEndedReceived

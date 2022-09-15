@@ -11,6 +11,7 @@ import org.springframework.data.domain.AbstractAggregateRoot;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
+@Table(name = "trucks")
 public class Truck extends AbstractAggregateRoot<Truck> {
 
     @Id
