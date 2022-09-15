@@ -15,3 +15,5 @@ spec:
   type: service
   lifecycle: experimental
   owner: default-team
+  providesApis:
+    - fleet-management-api
