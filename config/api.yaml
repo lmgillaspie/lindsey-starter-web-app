@@ -9,7 +9,6 @@ spec:
   owner: wehaul-fleet
   system: wehaul-fleet
   definition: |
-    ---
     openapi: 3.0.1
     info:
       title: OpenAPI definition
