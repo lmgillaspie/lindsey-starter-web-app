@@ -1,0 +1,12 @@
+apiVersion: backstage.io/v1alpha1
+kind: API
+metadata:
+  name: fleet-management-api
+  description: fleet management
+spec:
+  type: openapi
+  lifecycle: production
+  owner: wehaul-fleet
+  system: wehaul-fleet
+  definition:
+    $text: http://wehaul-fleet.wehaul.tap.h2o-2-1249.h2o.vmware.com/v3/api-docs
