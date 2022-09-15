@@ -1,0 +1,114 @@
+apiVersion: backstage.io/v1alpha1
+kind: API
+metadata:
+  name: fleet-management-api
+  description: fleet management
+spec:
+  type: openapi
+  lifecycle: production
+  owner: wehaul-fleet
+  system: wehaul-fleet
+  definition: |
+    ---
+    openapi: 3.0.1
+    info:
+      title: OpenAPI definition
+      version: v0
+    servers:
+    - url: http://wehaul-fleet.wehaul.tap.h2o-2-1249.h2o.vmware.com
+      description: Generated server url
+    paths:
+      "/trucks/{truckId}/inspect":
+        put:
+          tags:
+          - truck-controller
+          operationId: inspect
+          parameters:
+          - name: truckId
+            in: path
+            required: true
+            schema:
+              type: integer
+              format: int32
+          responses:
+            '200':
+              description: OK
+              content:
+                "*/*":
+                  schema:
+                    "$ref": "#/components/schemas/Truck"
+      "/trucks/{truckId}/completeinspection":
+        put:
+          tags:
+          - truck-controller
+          operationId: completeInspection
+          parameters:
+          - name: truckId
+            in: path
+            required: true
+            schema:
+              type: integer
+              format: int32
+          responses:
+            '200':
+              description: OK
+              content:
+                "*/*":
+                  schema:
+                    "$ref": "#/components/schemas/Truck"
+      "/trucks/":
+        get:
+          tags:
+          - truck-controller
+          operationId: getTrucks
+          responses:
+            '200':
+              description: OK
+              content:
+                "*/*":
+                  schema:
+                    type: object
+        post:
+          tags:
+          - truck-controller
+          operationId: create
+          responses:
+            '200':
+              description: OK
+              content:
+                "*/*":
+                  schema:
+                    "$ref": "#/components/schemas/Truck"
+      "/trucks/{truckId}":
+        get:
+          tags:
+          - truck-controller
+          operationId: read
+          parameters:
+          - name: truckId
+            in: path
+            required: true
+            schema:
+              type: integer
+              format: int32
+          responses:
+            '200':
+              description: OK
+              content:
+                "*/*":
+                  schema:
+                    "$ref": "#/components/schemas/Truck"
+    components:
+      schemas:
+        Truck:
+          type: object
+          properties:
+            id:
+              type: integer
+              format: int32
+            status:
+              type: string
+              enum:
+              - ELIGIBLE_FOR_INSPECTION
+              - BEING_INSPECTED
+              - NOT_ELIGIBLE_FOR_INSPECTION
