@@ -30,6 +30,13 @@ public class TruckController {
         return ResponseEntity.created(location).build();
     }
 
+//    @GetMapping("/")
+//    public ArrayList<Truck> getTrucks() {
+//        var trucks = truckService.findAllTrucks();
+//
+//        return trucks;
+//    }
+
     @GetMapping("/{truckId}")
     public ResponseEntity<Truck> read(@PathVariable Integer truckId) {
         Truck truck = truckService.findTruck(truckId);
