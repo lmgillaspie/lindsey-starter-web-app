@@ -1,6 +1,6 @@
 spring:
   application:
-    name: fleet
+    name: wehaul-fleet
   datasource:
     url: jdbc:h2:mem:mydb
   jpa:
