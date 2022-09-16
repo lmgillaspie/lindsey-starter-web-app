@@ -42,7 +42,7 @@ management:
     export:
       wavefront:
         api-token: cc1baed9-82c3-4577-a5be-3d1f0283dd28
-        uri: https://wavefront.surf
+        uri: https://wavefront.surf   # Goto https://wavefront.surf/us/jLj761GHMf
 
 wavefront:
   application:
